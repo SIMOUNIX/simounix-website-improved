@@ -14,6 +14,9 @@ async function retrieveCV() {
 
     // get the blob where pathname is docs/cv.pdf
     linkToCV.value = blobs.find((blob: any) => blob.pathname === 'docs/cv.pdf').url
+
+    // log to vercify the link
+    console.log('Link to CV:', linkToCV.value)
   } catch (error) {
     console.error('Error:', error)
   }
