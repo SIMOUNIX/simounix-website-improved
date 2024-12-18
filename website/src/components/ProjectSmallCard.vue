@@ -1,6 +1,6 @@
 <!-- card component for project preview -->
 
-<script setup>
+<script setup lang="ts">
 import { defineProps, defineEmits } from 'vue'
 
 const props = defineProps({

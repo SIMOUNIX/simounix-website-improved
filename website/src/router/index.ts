@@ -50,7 +50,8 @@ router.beforeEach((to) => {
     document.title = DEFAULT_TITLE
     return
   }
-  document.title = DEFAULT_TITLE.concat(' - ', to.meta.title)
+
+  document.title = DEFAULT_TITLE.concat(' - ', to.meta.title as string)
 })
 
 export default router

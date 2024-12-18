@@ -36,7 +36,7 @@ const projects = ref([
   },
 ])
 
-function handleClick(id) {
+function handleClick(id: string) {
   console.log('clicked on', id)
 }
 </script>
