@@ -1,9 +1,13 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import '@/assets/views/home.css'
 </script>
 
 <template>
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="home">
+    <div class="home-image">
+      <img src="../assets/images/simon_w.png" alt="simon thuaud" class="home-image__svg" />
+    </div>
+  </div>
 </template>
+
+<style></style>

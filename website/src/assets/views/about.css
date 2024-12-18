@@ -1,0 +1,78 @@
+@import '../base.css';
+
+.about {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5%;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  width: 60%;
+
+  /* add gap between items */
+  gap: 2rem;
+
+  /* dynamic size */
+  font-size: 1.3rem;
+}
+
+p {
+  text-align: justify;
+}
+
+.about-text p {
+  display: inline;
+}
+
+.about-text a {
+  color: var(--accent);
+  text-decoration: none;
+  display: inline;
+}
+
+.about-image {
+  height: 100%;
+  width: 35%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-image__svg {
+  height: auto;
+  width: 90%;
+}
+
+@media (prefers-color-scheme: dark) {
+  .about-image {
+    -webkit-filter: invert(100%); /* Safari/Chrome */
+    filter: invert(100%);
+  }
+}
+
+/* small screen phone or vertical tablet change to column */
+@media (max-width: 768px) {
+  .about {
+    flex-direction: column;
+  }
+
+  .about-text {
+    width: 100%;
+    justify-content: start;
+    gap: 1rem;
+    font-size: 1rem;
+  }
+
+  .about-image {
+    width: 60%;
+    margin: auto;
+  }
+}

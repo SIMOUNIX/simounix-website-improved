@@ -1,0 +1,14 @@
+.work {
+  height: 100%;
+}
+
+.cards-container {
+  /* grid, 2 columns */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  /* gap between elements of the grid */
+  gap: 1.5rem;
+
+  height: 100%;
+}
