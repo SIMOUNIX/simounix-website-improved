@@ -1,24 +1,27 @@
 <script setup lang="ts">
 import '@/assets/views/about.css'
 import { ref, onMounted } from 'vue'
+import axios from 'axios'
 
 const linkToCV = ref<string>('')
 
-// async function retrieveCV() {
-//   await getUrl({
-//     path: 'docs/CV_Simon_Thuaud.pdf',
-//     options: {
-//       bucket: 'bigBucket',
-//     },
-//   }).then((url) => {
-//     linkToCV.value = url.url.toString()
-//     console.log(linkToCV.value)
-//   })
-// }
+async function retrieveCV() {
+  try {
+    const response = await axios.get('/api/retrieveCV')
+    console.log('Response:', response)
+    const blobs = response.data
+    console.log('Files:', blobs)
 
-// onMounted(() => {
-//   retrieveCV()
-// })
+    // get the blob where pathname is docs/cv.pdf
+    linkToCV.value = blobs.find((blob: any) => blob.pathname === 'docs/cv.pdf').url
+  } catch (error) {
+    console.error('Error:', error)
+  }
+}
+
+onMounted(() => {
+  retrieveCV()
+})
 </script>
 
 <template>
