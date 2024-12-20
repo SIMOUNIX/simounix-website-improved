@@ -20,3 +20,9 @@
   /* fix height */
   height: 100%;
 }
+
+@media (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+}
