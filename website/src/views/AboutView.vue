@@ -1,19 +1,27 @@
 <script setup lang="ts">
 import '@/assets/views/about.css'
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import { ListBlobResult } from '@vercel/blob'
 
 const linkToCV = ref<string>('')
 
 async function retrieveCV() {
   try {
-    const response = await axios.get('/api/retrieveCV')
+    const response = await fetch('/api/retrieveCV', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
     console.log('Response:', response)
-    const blobs = response.data
-    console.log('Files:', blobs)
+    const blobs = (await response.json()) as ListBlobResult
+    // console.log('Files:', blobs)
+
+    // first blob is the one we want
+    linkToCV.value = blobs[0].url
 
     // get the blob where pathname is docs/cv.pdf
-    linkToCV.value = blobs.find((blob: any) => blob.pathname === 'docs/cv.pdf').url
+    // linkToCV.value = blobs.find((blob: any) => blob.pathname === 'docs/cv.pdf').url
 
     // log to vercify the link
     console.log('Link to CV:', linkToCV.value)
