@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+// import { useRouter } from 'vue-router'
 import SmallCard from '../components/ProjectSmallCard.vue'
 
 import '@/assets/views/work.css'
