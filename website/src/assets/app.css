@@ -27,11 +27,11 @@ header {
 }
 
 .nav-element:hover {
-  color: var(--accent);
+  color: var(--primary);
 }
 
 .router-link-active {
-  color: var(--accent);
+  color: var(--primary);
 }
 
 .router {

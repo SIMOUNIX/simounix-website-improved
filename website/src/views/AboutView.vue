@@ -1,19 +1,35 @@
 <script setup lang="ts">
 import '@/assets/views/about.css'
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
 
 const linkToCV = ref<string>('')
 
 async function retrieveCV() {
   try {
-    const response = await axios.get('/api/retrieveCV')
-    console.log('Response:', response)
-    const blobs = response.data
-    console.log('Files:', blobs)
+    const response = await fetch('/api/retrieveCV', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
 
-    // get the blob where pathname is docs/cv.pdf
-    linkToCV.value = blobs.find((blob: any) => blob.pathname === 'docs/cv.pdf').url
+    if (response.status == 401) {
+      console.error('Unauthorized')
+      return
+    }
+
+    const blobs = (await response.json()) as Array<{
+      url: string
+      pathname: string
+      downloadUrl: string
+    }>
+
+    console.log('Blobs:', blobs)
+
+    // access the first blob
+    if (Array.isArray(blobs) && blobs.length > 0) {
+      linkToCV.value = blobs[0].url
+    }
 
     // log to vercify the link
     console.log('Link to CV:', linkToCV.value)
