@@ -11,8 +11,7 @@ const projects = ref([
     id: 'website',
     image: new URL('../assets/images/epita.png', import.meta.url).href,
     title: 'EPITA',
-    description:
-      'Actuellement étudiant en informatique à EPITA, je me spécialise en Intelligence Artificielle et Machine Learning.',
+    description: 'Actuellement étudiant',
     link: 'https://www.epita.fr',
     linkText: 'EPITA',
   },

@@ -22,7 +22,9 @@ function handleClick() {
 
 <template>
   <div class="small-card" @click="handleClick">
-    <img :src="image" alt="project image" />
+    <div class="image-wrapper">
+      <img :src="image" alt="project image" />
+    </div>
     <div class="card-content">
       <h3>{{ title }}</h3>
       <p>{{ description }}</p>
@@ -38,13 +40,13 @@ function handleClick() {
   display: flex;
   flex-direction: row;
   width: 100%;
-  height: 40%;
+  /* height: 30%; */
   padding: 1rem;
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.2s;
-  background-color: var(--background);
+  background-color: var(--secondary);
   overflow: hidden;
 }
 
@@ -52,14 +54,24 @@ function handleClick() {
   transform: scale(1.05);
 }
 
-img {
-  width: auto;
+.image-wrapper {
+  flex: 0 0 30%;
   height: 100%;
-  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   border-radius: 0.5rem;
 }
 
 .card-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,17 +104,17 @@ a:hover {
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .small-card {
-    flex-direction: column; /* Stack the image and content vertically */
-    height: auto; /* Allow height to adjust naturally */
+    flex-direction: column;
+    height: auto;
   }
 
   img {
-    width: 100%; /* Full width for smaller screens */
-    height: 200px; /* Restrict image height */
+    width: 100%;
+    height: 200px;
   }
 
   .card-content {
-    width: 100%; /* Full width for content */
+    width: 100%;
     padding: 1rem 0;
   }
 }
