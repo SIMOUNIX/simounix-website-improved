@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import '@/assets/views/about.css'
 import { ref, onMounted } from 'vue'
-import { ListBlobResult } from '@vercel/blob'
 
 const linkToCV = ref<string>('')
 
@@ -13,15 +12,19 @@ async function retrieveCV() {
         'Content-Type': 'application/json',
       },
     })
-    console.log('Response:', response)
-    const blobs = (await response.json()) as ListBlobResult
-    // console.log('Files:', blobs)
 
-    // first blob is the one we want
-    linkToCV.value = blobs[0].url
+    const blobs = (await response.json()) as Array<{
+      url: string
+      pathname: string
+      downloadUrl: string
+    }>
 
-    // get the blob where pathname is docs/cv.pdf
-    // linkToCV.value = blobs.find((blob: any) => blob.pathname === 'docs/cv.pdf').url
+    console.log('Blobs:', blobs)
+
+    // access the first blob
+    if (Array.isArray(blobs) && blobs.length > 0) {
+      linkToCV.value = blobs[0].url
+    }
 
     // log to vercify the link
     console.log('Link to CV:', linkToCV.value)

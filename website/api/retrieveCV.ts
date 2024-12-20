@@ -15,7 +15,7 @@ import { list } from '@vercel/blob'
 //   }
 // }
 
-export async function GET(request: Request): Promise<Response> {
+export async function GET(): Promise<Response> {
   // console.log('Request:', request)
   console.log('Trying to get the cv file')
   try {
