@@ -13,6 +13,11 @@ async function retrieveCV() {
       },
     })
 
+    if (response.status == 401) {
+      console.error('Unauthorized')
+      return
+    }
+
     const blobs = (await response.json()) as Array<{
       url: string
       pathname: string

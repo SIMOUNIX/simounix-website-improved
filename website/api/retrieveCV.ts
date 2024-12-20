@@ -18,6 +18,12 @@ import { list } from '@vercel/blob'
 export async function GET(): Promise<Response> {
   // console.log('Request:', request)
   console.log('Trying to get the cv file')
+
+  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+    console.error('BLOB_READ_WRITE_TOKEN is not set')
+    return new Response('BLOB_READ_WRITE_TOKEN is not set', { status: 401 })
+  }
+
   try {
     const { blobs } = await list()
 
