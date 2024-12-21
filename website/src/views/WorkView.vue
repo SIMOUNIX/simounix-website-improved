@@ -1,43 +1,42 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 // import { useRouter } from 'vue-router'
 import SmallCard from '../components/ProjectSmallCard.vue'
 
 import '@/assets/views/work.css'
 
-// const router = useRouter(); // not used yet
-const projects = ref([
-  {
-    id: 'website',
-    image: new URL('../assets/images/epita.png', import.meta.url).href,
-    title: 'EPITA',
-    description: 'Actuellement étudiant',
-    link: 'https://www.epita.fr',
-    linkText: 'EPITA',
-  },
-  {
-    id: 'ai',
-    image: new URL('../assets/images/simon_gray.png', import.meta.url).href,
-    title: 'Intelligence Artificielle',
-    description:
-      "Passionné par l'informatique et les nouvelles technologies, je suis également un grand amateur de cuisine.",
-    link: 'https://www.epita.fr',
-    linkText: 'AI',
-  },
-  {
-    id: 'ai',
-    image: new URL('../assets/images/simon_gray.png', import.meta.url).href,
-    title: 'Intelligence Artificielle',
-    description:
-      "Passionné par l'informatique et les nouvelles technologies, je suis également un grand amateur de cuisine.",
-    link: 'https://www.epita.fr',
-    linkText: 'AI',
-  },
-])
+const projects = ref([])
+
+async function retrieveProjectHeaders() {
+  try {
+    const response = await fetch('/api/retrieveProjectHeaders', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    console.log('Response:', response)
+
+    // get the data
+    const data = await response.json()
+    console.log('Data:', data)
+
+    // set the data
+    projects.value = data
+  } catch (error) {
+    console.error('Error:', error)
+  }
+}
 
 function handleClick(id: string) {
-  console.log('clicked on', id)
+  console.log('Clicked:', id)
+  // router.push({ name: 'ProjectView', params: { id } })
 }
+
+onMounted(() => {
+  retrieveProjectHeaders()
+})
 </script>
 
 <template>
@@ -47,12 +46,12 @@ function handleClick(id: string) {
         v-for="project in projects"
         @cardClicked="handleClick"
         :key="project.id"
-        :title="project.title"
+        :title="project.project_name"
         :description="project.description"
         :image="project.image"
         :link="project.link"
-        :linkText="project.linkText"
-        :id="project.id"
+        :linkText="project.link_text"
+        :id="project.component_name"
       />
     </div>
   </div>
