@@ -6,7 +6,7 @@ export async function getData() {
   const sql = neon(db_url)
 
   const data = await sql`SELECT * FROM project_headers`
-  console.log(data)
+  // console.log(data)
   return data
 }
 

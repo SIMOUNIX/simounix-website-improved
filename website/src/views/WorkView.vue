@@ -5,7 +5,17 @@ import SmallCard from '../components/ProjectSmallCard.vue'
 
 import '@/assets/views/work.css'
 
-const projects = ref([])
+interface Project {
+  id: string
+  project_name: string
+  description: string
+  image: string
+  link: string
+  link_text: string
+  component_name: string
+}
+
+const projects = ref<Project[]>([])
 
 async function retrieveProjectHeaders() {
   try {
