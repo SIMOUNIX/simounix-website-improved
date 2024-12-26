@@ -91,17 +91,18 @@ p {
 }
 
 a {
-  color: var(--accent);
+  color: var(--text);
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.2s;
 }
 
 a:hover {
-  color: var(--primary);
+  font: bold;
+  color: var(--accent);
 }
 
-/* Responsive adjustments */
+/* responsive adjustments */
 @media (max-width: 768px) {
   .small-card {
     flex-direction: column;
