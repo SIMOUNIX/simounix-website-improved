@@ -23,7 +23,7 @@ const closeMenu = () => {
         </div>
         <div :class="['router', toggleMenu ? 'open-menu' : 'closed-menu']">
           <RouterLink to="/about" class="nav-element" @click="closeMenu">à propos</RouterLink>
-          <RouterLink to="/work" class="nav-element" @click="closeMenu">travaux</RouterLink>
+          <RouterLink to="/projects" class="nav-element" @click="closeMenu">projets</RouterLink>
           <RouterLink to="/recipes" class="nav-element" @click="closeMenu">recettes</RouterLink>
         </div>
         <div class="burger" @click="toggleMenuHandler">

@@ -22,11 +22,11 @@ const router = createRouter({
       },
     },
     {
-      path: '/work',
-      name: 'work',
+      path: '/projects',
+      name: 'projets',
       component: () => import('../views/WorkView.vue'),
       meta: {
-        title: 'travaux',
+        title: 'projets',
       },
     },
     {
