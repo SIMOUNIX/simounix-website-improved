@@ -42,7 +42,7 @@ async function retrieveProjectHeaders() {
 
 async function getImageForProject(project: Project) {
   try {
-    const response = await fetch('/api/retrieveImages', {
+    const response = await fetch('/api/retrieveProjectHeadersImages', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
